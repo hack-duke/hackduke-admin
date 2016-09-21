@@ -8,6 +8,7 @@ class SegmentedControl extends React.Component {
   constructor () {
     super()
     this.state = {dynamicPadding: 0}
+    this.handleClick = this.handleClick.bind(this)
   }
 
   static propTypes = {
@@ -52,7 +53,7 @@ class SegmentedControl extends React.Component {
                          'borderBottom': `1.5px solid ${this.handleActiveBorderStyle(index, this.props.active)}`,
                          'opacity': `${this.handleActiveTextStyle(index, this.props.active)}`}}
               key={index}
-              onClick={() => this.handleClick(index).bind(this)}>
+              onClick={() => this.handleClick(index)}>
               {humanize(title)}
             </div>
           )}

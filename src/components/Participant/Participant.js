@@ -5,7 +5,6 @@ import StackedInfo from 'components/StackedInfo'
 import LinkInfo from 'components/LinkInfo'
 import { personalInfoFields, linkFields } from 'extensions/participantUtils'
 import { dehumanize, humanize } from 'extensions/stringUtils'
-import { tagColorMap } from 'extensions/tagUtils'
 
 class Participant extends React.Component {
 
@@ -16,9 +15,7 @@ class Participant extends React.Component {
 
   static propTypes = {
     participant: React.PropTypes.object.isRequired,
-    person: React.PropTypes.object.isRequired,
-    roleType: React.PropTypes.string.isRequired,
-    clickEdit: React.PropTypes.func.isRequired
+    person: React.PropTypes.object.isRequired
   }
 
   componentDidMount () {
@@ -66,18 +63,11 @@ class Participant extends React.Component {
   render () {
     return (
       <div className={classes.container}>
-        <div className={classes.leftPadding}>
 
-          <div className={classes.spacedInfoSeparator}>
+        <div className={classes.leftPadding}>
+          <h1 className={classes.spacedInfoSeparator} style={{'marginTop': '0', 'paddingTop': '50px'}}>
             {humanize(`${this.props.person['first_name']} ${this.props.person['last_name']}`)}
-            <span>
-              <button className={classes.edit}
-                style={{'backgroundColor': `${tagColorMap[this.props.roleType]}`}}
-                onClick={() => this.props.clickEdit()}>
-                Edit
-              </button>
-            </span>
-          </div>
+          </h1>
           <SpacedInfo titles={this.state.personalInfo.map(info => info['title'])}
             descriptions={this.state.personalInfo.map(info => info['description'])} />
         </div>
@@ -85,9 +75,9 @@ class Participant extends React.Component {
         <div className={classes.lineSeparator} />
 
         <div className={classes.leftPadding}>
-          <div className={classes.spacedInfoSeparator}> More Info </div>
-          {this.renderList('Skills', this.props.participant['skills'].join(', '))}
+          <h1 className={classes.spacedInfoSeparator}> More Info </h1>
           {this.renderList('Dietary Restrictions', this.props.person['dietary_restrictions'].join(', '))}
+          {this.renderList('Skills', this.props.participant['skills'].join(', '))}
           {Object.keys(this.state.linkInfo).length > 0 ? (
             <LinkInfo titles={this.state.linkInfo.map(info => info['title'])}
               links={this.state.linkInfo.map(info => info['description'])} />
@@ -97,11 +87,12 @@ class Participant extends React.Component {
         <div className={classes.lineSeparator} />
 
         <div className={classes.leftPadding}>
-          <div className={classes.spacedInfoSeparator}> Custom Questions </div>
+          <h1 className={classes.spacedInfoSeparator}> Custom Questions </h1>
           {Object.keys(this.props.participant['custom']).length > 0 ? (
             <StackedInfo text={this.props.participant['custom']} />
           ) : null}
         </div>
+
       </div>
     )
   }
