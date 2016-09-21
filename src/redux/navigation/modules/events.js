@@ -33,15 +33,15 @@ export function updateCurrEvent (event) {
 
 /* eslint eqeqeq: 0 */
 
-export const selectCurrEventType = (eventType) => {
+export const selectCurrEventType = (eventType, season, year) => {
   return (dispatch, getState) => {
     const eventsState = getState().events
     const currEvents = eventsState.events
     for (let i = 0; i < currEvents.length; i++) {
       let currEvent = currEvents[i]
       if (currEvent['event_type'] == eventType &&
-          currEvent['season'] == eventsState.currSeason &&
-          currEvent['year'] == eventsState.currYear) {
+          currEvent['season'] == season &&
+          currEvent['year'] == year) {
         dispatch(updateCurrEvent(currEvent))
       }
     }
@@ -51,8 +51,7 @@ export const selectCurrEventType = (eventType) => {
 export const fetchEvents = (year, season) => {
   return (dispatch, getState) => {
     dispatch(requestEvents())
-    const body = JSON.stringify({ season: season, year: year })
-    fetchAPI('POST', body, 'events/semester').then(data => data.json())
+    fetchAPI('GET', 'events/current').then(data => data.json())
                           .then(json => dispatch(receiveEvents(json, dispatch)))
   }
 }
@@ -78,7 +77,7 @@ const EVENT_ACTION_HANDLERS = {
 }
 
 // year/season shouldn't be hard-coded in the initialState
-const initialState = {fetching: false, events: [], currType: '', currYear: '2016', currSeason: 'spring'}
+const initialState = {fetching: false, events: [], currEvent: {}}
 export default function eventReducer (state = initialState, action) {
   const handler = EVENT_ACTION_HANDLERS[action.type]
   return handler ? handler(state, action) : state
