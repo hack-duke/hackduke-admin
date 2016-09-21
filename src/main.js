@@ -43,7 +43,7 @@ const MOUNT_NODE = document.getElementById('root')
 
 let render = () => {
   const routes = require('./routes/index').default(store)
-  store.dispatch(fetchEvents(2016, 'spring'))
+  store.dispatch(fetchEvents())
 
   ReactDOM.render(
     <AppContainer

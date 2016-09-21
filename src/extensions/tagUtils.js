@@ -6,6 +6,7 @@ export const tagColorMap = {
   'participant rejected': '#EE5A63', // red
   'participant waitlisted': '#FEC60D', // yellow
   'participant confirmed': '#24BAB9', // turquoise
+  'participant registered': '#FFA500', // orange
   'mentor': '#584AD3', // purple
   'speaker': '#24A0EC', // blue
   'judge': '#415263' // gray black

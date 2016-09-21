@@ -13,8 +13,8 @@ class NavMenu extends React.Component {
     currSeason: React.PropTypes.string.isRequired
   }
 
-  handleEventClick (eventType) {
-    this.props.selectCurrEventType(eventType)
+  handleEventClick (eventType, season, year) {
+    this.props.selectCurrEventType(eventType, season, year)
   }
 
   render () {
@@ -22,9 +22,7 @@ class NavMenu extends React.Component {
       <div className={classes.navMenu}>
         <IndexLink className={classes.linkElement} to={'/'}> Home </IndexLink>
         <EventNavElement title={'Events'} elements={this.props.events}
-          click={this.handleEventClick.bind(this)}
-          year={this.props.currYear}
-          season={this.props.currSeason} />
+          click={this.handleEventClick.bind(this)} />
       </div>
     )
   }

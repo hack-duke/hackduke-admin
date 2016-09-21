@@ -16,15 +16,14 @@ class EventNavElement extends React.Component {
   }
 
   handleElementClick (index) {
-    this.props.click(this.props.elements[index]['event_type'])
+    this.props.click(this.props.elements[index]['event_type'],
+      this.props.elements[index]['season'], this.props.elements[index]['year'])
   }
 
   static propTypes = {
     title: React.PropTypes.string.isRequired,
     elements: React.PropTypes.array.isRequired,
-    click: React.PropTypes.func.isRequired,
-    season: React.PropTypes.string.isRequired,
-    year: React.PropTypes.string.isRequired
+    click: React.PropTypes.func.isRequired
   }
 
   render () {
@@ -40,7 +39,7 @@ class EventNavElement extends React.Component {
           {this.props.elements.map((element, index) =>
             <div onClick={() => this.handleElementClick(index)} key={index}>
               <IndexLink className={classes.linkElement}
-                to={`/role/${element['event_type']}/${this.props.year}/${this.props.season}`}>
+                to={`/role/${element['event_type']}/${element['year']}/${element['season']}`}>
                 {humanize(element['event_type'])}
               </IndexLink>
             </div>

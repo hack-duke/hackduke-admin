@@ -43,7 +43,14 @@ class RoleList extends React.Component {
     this.updateState(nextProps)
   }
 
+  /* eslint eqeqeq: 0 */
+
   updateState (nextProps) {
+    if (this.props.event['event_type'] != nextProps.event['event_type']) {
+      console.log()
+      document.getElementsByClassName('listContainer')[0].scrollTop = 0
+      this.props.updateActiveIndex(-1, DisplayType.TYPEFORM)
+    }
     if (this.props.detailActiveIndex === nextProps.detailActiveIndex) {
       this.setState({roles: this.filterRolesByText(this.state.value, nextProps.roles)})
     }
@@ -93,6 +100,7 @@ class RoleList extends React.Component {
     const email = role['person']['email'].toLowerCase()
     const gender = role['person']['gender']
     let searchString = firstName + ' ' + lastName + email
+    role['person']['dietary_restrictions'].forEach(restriction => searchString += restriction.toLowerCase())
     if (gender !== null && gender !== '') {
       searchString += gender.toLowerCase()
     }
@@ -104,7 +112,6 @@ class RoleList extends React.Component {
         searchString += attributes['graduation_year'].toString().toLowerCase()
         searchString += attributes['major'].toLowerCase()
         searchString += attributes['school'].toLowerCase()
-        attributes['dietary_restrictions'].forEach(restriction => searchString += restriction.toLowerCase())
         attributes['custom'].forEach(q => searchString += q.toLowerCase())
       }
     })
@@ -137,7 +144,7 @@ class RoleList extends React.Component {
             </div>
           </div>
         </div>
-        <Infinite containerHeight={this.state.tableHeight}
+        <Infinite className={'listContainer'} containerHeight={this.state.tableHeight}
           preloadAdditionalHeight={10 * this.state.tableHeight}
           elementHeight={this.state.rowHeight}>
           {this.state.roles.map((element, index) =>

@@ -28,7 +28,7 @@ export const fetchRoles = (eventType, year, season) => {
   return (dispatch, getState) => {
     dispatch(requestRoles())
     const body = JSON.stringify({ season: season, year: year, event_type: eventType })
-    fetchAPI('POST', body, 'people/event').then(data => data.json()).then(json => dispatch(receiveRoles(json)))
+    fetchAPI('POST', 'people/event', body).then(data => data.json()).then(json => dispatch(receiveRoles(json)))
   }
 }
 

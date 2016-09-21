@@ -1,5 +1,4 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import Participant from 'components/Participant'
 import StackedInfo from 'components/StackedInfo'
 import SpacedInfo from 'components/SpacedInfo'
@@ -21,9 +20,6 @@ describe('(Component) Participant', () => {
         "attending": null,
         "major": "Computer Science",
         "school": "North Carolina State University",
-        "dietary_restrictions": [
-          "None"
-        ],
         "website": null,
         "resume": null,
         "github": "www.github.com",
@@ -37,21 +33,14 @@ describe('(Component) Participant', () => {
           "asdasd"
         ]
       },
-      person: {'first_name': 'George', 'email': 'george.smith@gmail.com'},
+      person: {'first_name': 'George', 'email': 'george.smith@gmail.com', "dietary_restrictions": [ "None" ]},
       roleType: 'participant accepted',
-      clickEdit: _spies.clickEdit = sinon.spy()
     }
     _wrapper = shallow(<Participant {..._props} />)
   })
 
   it('has 3 spaced info seperators, including one with the person\'s name', () => {
     expect(_wrapper.find('.' + classes.spacedInfoSeparator)).to.have.length(3)
-  })
-
-  it('has an edit button that calls clickEdit', () => {
-    const editButton = _wrapper.find('.' + classes.edit)
-    editButton.simulate('click')
-    _spies.clickEdit.should.have.been.called
   })
 
   it('always has a <SpacedInfo />', () => {
@@ -87,8 +76,8 @@ describe('(Component) Participant', () => {
   })
 
   it('has 0 list containers for when dietary restrictions and skills are empty', () => {
-    const participant = { ..._wrapper.instance().props.participant, dietary_restrictions: []}
-    _wrapper.setProps({participant: participant})
+    const person = { ..._wrapper.instance().props.person, dietary_restrictions: []}
+    _wrapper.setProps({person: person})
     expect(_wrapper.find('.' + classes.listContainer)).to.have.length(0)
   })
 
