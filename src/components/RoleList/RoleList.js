@@ -26,7 +26,6 @@ class RoleList extends React.Component {
     handleCellClick: React.PropTypes.func.isRequired,
     updateActiveIndex: React.PropTypes.func.isRequired,
     detailActiveIndex: React.PropTypes.number.isRequired,
-    updateActiveStatus: React.PropTypes.func.isRequired,
     roles: React.PropTypes.array.isRequired,
     updateSelectedPerson: React.PropTypes.func.isRequired,
     receiveRoles: React.PropTypes.func.isRequired
@@ -48,13 +47,10 @@ class RoleList extends React.Component {
   /* eslint eqeqeq: 0 */
 
   updateState (nextProps) {
+    console.log(nextProps.event['event_type'])
     if (this.props.event['event_type'] != nextProps.event['event_type']) {
       this.props.receiveRoles([])
       document.getElementsByClassName(classes.listContainer)[0].scrollTop = 0
-      this.props.updateActiveIndex(-1, DisplayType.DETAIL)
-      this.props.updateActiveStatus(false, DisplayType.DETAIL)
-      this.props.updateActiveIndex(-1, DisplayType.TYPEFORM)
-      this.props.updateActiveStatus(true, DisplayType.TYPEFORM)
     }
     if (this.props.detailActiveIndex === nextProps.detailActiveIndex) {
       this.setState({roles: this.filterRolesByText(this.state.value, nextProps.roles)})

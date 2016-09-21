@@ -1,13 +1,12 @@
 import { connect } from 'react-redux'
-import { updateActiveIndex, updateSelectedPerson, updateActiveStatus } from '../modules/roleNavigation'
+import { updateActiveIndex, updateSelectedPerson } from '../modules/roleNavigation'
 import { receiveRoles } from '../modules/role'
 import RoleList from 'components/RoleList'
 
 const mapDispatchToProps = {
   updateActiveIndex,
   updateSelectedPerson,
-  receiveRoles,
-  updateActiveStatus
+  receiveRoles
 }
 
 const mapStateToProps = (state) => ({
