@@ -22,7 +22,7 @@ class NavMenu extends React.Component {
       <div className={classes.navMenu}>
         <IndexLink className={classes.linkElement} to={'/'}> Home </IndexLink>
         <EventNavElement title={'Events'} elements={this.props.events}
-          click={this.handleEventClick.bind(this)}/>
+          click={this.handleEventClick.bind(this)} />
       </div>
     )
   }

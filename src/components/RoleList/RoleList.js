@@ -1,6 +1,5 @@
 import React from 'react'
 import classes from './RoleList.scss'
-import roleClasses from '../Role/Role.scss'
 import { humanize, dehumanize } from 'extensions/stringUtils'
 import PlusIcon from './assets/plus.png'
 import SearchIcon from './assets/search.png'

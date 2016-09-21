@@ -16,7 +16,7 @@ class EventNavElement extends React.Component {
   }
 
   handleElementClick (index) {
-    this.props.click(this.props.elements[index]['event_type'], 
+    this.props.click(this.props.elements[index]['event_type'],
       this.props.elements[index]['season'], this.props.elements[index]['year'])
   }
 
