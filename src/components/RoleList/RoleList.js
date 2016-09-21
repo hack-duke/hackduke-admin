@@ -155,7 +155,7 @@ class RoleList extends React.Component {
           </div>
         </div>
         <div className={classes.spinner} style={{'backgroundSize': `${this.showSpinnerSize()}`}}>
-          <Infinite className={classes.listContainer} 
+          <Infinite className={classes.listContainer}
             containerHeight={this.state.tableHeight}
             preloadAdditionalHeight={10 * this.state.tableHeight}
             elementHeight={this.state.rowHeight}>
