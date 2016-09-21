@@ -52,6 +52,10 @@ if (config.env === 'development') {
     'section in the README for more information on deployment strategies.'
   )
 
+  app.use(convert(historyApiFallback({
+    verbose: false
+  })))
+
   app.use(async (ctx, next) => {
     const base64 = require('base-64')
     const auth = `${process.env.BASIC_AUTH_USERNAME}:${process.env.BASIC_AUTH_PASSWORD}`
