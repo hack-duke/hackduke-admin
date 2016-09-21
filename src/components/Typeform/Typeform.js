@@ -135,7 +135,7 @@ class Typeform extends React.Component {
             leftClick={() => this.handleBackClick()}
             rightItem={'Refresh'}
             rightClick={() => this.handleRefreshClick()}
-            title={this.props.event['form_names'][activeIndex]} />
+            title={''} />
           <div className={classes.spinner}>
             <embed className={classes.typeform}
               src={baseUrl}
