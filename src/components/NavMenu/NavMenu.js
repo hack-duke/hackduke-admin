@@ -8,9 +8,7 @@ class NavMenu extends React.Component {
   static propTypes = {
     events: React.PropTypes.array.isRequired,
     fetchEvents: React.PropTypes.func.isRequired,
-    selectCurrEventType: React.PropTypes.func.isRequired,
-    currYear: React.PropTypes.string.isRequired,
-    currSeason: React.PropTypes.string.isRequired
+    selectCurrEventType: React.PropTypes.func.isRequired
   }
 
   handleEventClick (eventType, season, year) {

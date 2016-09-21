@@ -1,3 +1,13 @@
+.spinner {
+  background-image: url('static/spinner.gif');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.listContainer {
+  display: block;
+}
+
 .flexContainer {
   display: flex;
 }

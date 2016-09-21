@@ -26,8 +26,10 @@ class RoleList extends React.Component {
     handleCellClick: React.PropTypes.func.isRequired,
     updateActiveIndex: React.PropTypes.func.isRequired,
     detailActiveIndex: React.PropTypes.number.isRequired,
+    updateActiveStatus: React.PropTypes.func.isRequired,
     roles: React.PropTypes.array.isRequired,
-    updateSelectedPerson: React.PropTypes.func.isRequired
+    updateSelectedPerson: React.PropTypes.func.isRequired,
+    receiveRoles: React.PropTypes.func.isRequired
   }
 
   componentDidMount () {
@@ -47,9 +49,12 @@ class RoleList extends React.Component {
 
   updateState (nextProps) {
     if (this.props.event['event_type'] != nextProps.event['event_type']) {
-      console.log()
-      document.getElementsByClassName('listContainer')[0].scrollTop = 0
+      this.props.receiveRoles([])
+      document.getElementsByClassName(classes.listContainer)[0].scrollTop = 0
+      this.props.updateActiveIndex(-1, DisplayType.DETAIL)
+      this.props.updateActiveStatus(false, DisplayType.DETAIL)
       this.props.updateActiveIndex(-1, DisplayType.TYPEFORM)
+      this.props.updateActiveStatus(true, DisplayType.TYPEFORM)
     }
     if (this.props.detailActiveIndex === nextProps.detailActiveIndex) {
       this.setState({roles: this.filterRolesByText(this.state.value, nextProps.roles)})
@@ -57,6 +62,10 @@ class RoleList extends React.Component {
     if (this.state.roles.length === 0) {
       this.setState({roles: nextProps.roles})
     }
+  }
+
+  showSpinnerSize () {
+    return this.props.roles.length == 0 ? '50px 50px' : '0px 0px'
   }
 
   handleResize (event) {
@@ -112,6 +121,7 @@ class RoleList extends React.Component {
         searchString += attributes['graduation_year'].toString().toLowerCase()
         searchString += attributes['major'].toLowerCase()
         searchString += attributes['school'].toLowerCase()
+        attributes['skills'].forEach(skill => searchString += skill.toLowerCase())
         attributes['custom'].forEach(q => searchString += q.toLowerCase())
       }
     })
@@ -144,24 +154,27 @@ class RoleList extends React.Component {
             </div>
           </div>
         </div>
-        <Infinite className={'listContainer'} containerHeight={this.state.tableHeight}
-          preloadAdditionalHeight={10 * this.state.tableHeight}
-          elementHeight={this.state.rowHeight}>
-          {this.state.roles.map((element, index) =>
-            <div style={{'backgroundColor': `${this.handleActiveStyle(index)}`}}
-              className={classes.cellFlexContainer}
-              onClick={() => this.handleSelectClick(index)}
-              key={index}>
-              <div className={classes.tenPercentSpacer} />
-              <div className={classes.roleCellWrapper}>
-                <RoleCell key={index}
-                  bottomBorderColor={lightGrey}
-                  person={this.state.roles[index]['person']}
-                  roles={this.state.roles[index]['roles']} />
+        <div className={classes.spinner} style={{'backgroundSize': `${this.showSpinnerSize()}`}}>
+          <Infinite className={classes.listContainer} 
+            containerHeight={this.state.tableHeight}
+            preloadAdditionalHeight={10 * this.state.tableHeight}
+            elementHeight={this.state.rowHeight}>
+            {this.state.roles.map((element, index) =>
+              <div style={{'backgroundColor': `${this.handleActiveStyle(index)}`}}
+                className={classes.cellFlexContainer}
+                onClick={() => this.handleSelectClick(index)}
+                key={index}>
+                <div className={classes.tenPercentSpacer} />
+                <div className={classes.roleCellWrapper}>
+                  <RoleCell key={index}
+                    bottomBorderColor={lightGrey}
+                    person={this.state.roles[index]['person']}
+                    roles={this.state.roles[index]['roles']} />
+                </div>
               </div>
-            </div>
-          )}
-        </Infinite>
+            )}
+          </Infinite>
+        </div>
       </div>
     )
   }
