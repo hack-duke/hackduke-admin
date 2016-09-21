@@ -10,7 +10,6 @@ import _debug from 'debug'
 import config from '../config'
 import webpackDevMiddleware from './middleware/webpack-dev'
 import webpackHMRMiddleware from './middleware/webpack-hmr'
-import enforceHttps from 'koa-sslify'
 
 const debug = _debug('app:server')
 const paths = config.utils_paths
@@ -52,8 +51,6 @@ if (config.env === 'development') {
     'server such as nginx to serve your static files. See the "deployment" ' +
     'section in the README for more information on deployment strategies.'
   )
-
-  app.use(enforceHttps({trustProtoHeader: true}))
 
   app.use(async (ctx, next) => {
     const base64 = require('base-64')
