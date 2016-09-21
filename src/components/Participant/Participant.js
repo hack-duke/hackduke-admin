@@ -87,6 +87,7 @@ class Participant extends React.Component {
         <div className={classes.leftPadding}>
           <div className={classes.spacedInfoSeparator}> More Info </div>
           {this.renderList('Skills', this.props.participant['skills'].join(', '))}
+          {this.renderList('Dietary Restrictions', this.props.person['dietary_restrictions'].join(', '))}
           {Object.keys(this.state.linkInfo).length > 0 ? (
             <LinkInfo titles={this.state.linkInfo.map(info => info['title'])}
               links={this.state.linkInfo.map(info => info['description'])} />

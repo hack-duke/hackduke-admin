@@ -21,9 +21,6 @@ describe('(Component) Participant', () => {
         "attending": null,
         "major": "Computer Science",
         "school": "North Carolina State University",
-        "dietary_restrictions": [
-          "None"
-        ],
         "website": null,
         "resume": null,
         "github": "www.github.com",
@@ -37,7 +34,7 @@ describe('(Component) Participant', () => {
           "asdasd"
         ]
       },
-      person: {'first_name': 'George', 'email': 'george.smith@gmail.com'},
+      person: {'first_name': 'George', 'email': 'george.smith@gmail.com',"dietary_restrictions": ["None"]},
       roleType: 'participant accepted',
       clickEdit: _spies.clickEdit = sinon.spy()
     }
