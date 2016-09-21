@@ -47,7 +47,6 @@ class RoleList extends React.Component {
   /* eslint eqeqeq: 0 */
 
   updateState (nextProps) {
-    console.log(nextProps.event['event_type'])
     if (this.props.event['event_type'] != nextProps.event['event_type']) {
       this.props.receiveRoles([])
       document.getElementsByClassName(classes.listContainer)[0].scrollTop = 0
