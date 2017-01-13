@@ -30,9 +30,9 @@ class FilterButton extends React.Component {
       <div className={classes.tagContainer}>
         <button onClick={this.handleClick.bind(this)}
           style={{'backgroundColor': `${this.state.backgroundColor}`,
-                        'opacity': `${this.state.opacity}`}}
+            'opacity': `${this.state.opacity}`}}
           className={classes.tag}>
-            {humanize(this.props.name)}
+          {humanize(this.props.name)}
         </button>
       </div>
     )

@@ -18,6 +18,7 @@ export function requestEvents () {
 
 // temporary thing to speed up development
 export function receiveEvents (events, dispatch) {
+  console.log(events)
   return {
     type: RECEIVE_EVENTS,
     payload: events

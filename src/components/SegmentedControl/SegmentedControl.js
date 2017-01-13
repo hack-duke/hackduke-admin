@@ -49,9 +49,9 @@ class SegmentedControl extends React.Component {
           {this.props.titles.map((title, index) =>
             <div className={classes.segment}
               style={{'paddingRight': `${this.state.dynamicPadding}px`,
-                         'paddingLeft': `${this.state.dynamicPadding}px`,
-                         'borderBottom': `1.5px solid ${this.handleActiveBorderStyle(index, this.props.active)}`,
-                         'opacity': `${this.handleActiveTextStyle(index, this.props.active)}`}}
+                'paddingLeft': `${this.state.dynamicPadding}px`,
+                'borderBottom': `1.5px solid ${this.handleActiveBorderStyle(index, this.props.active)}`,
+                'opacity': `${this.handleActiveTextStyle(index, this.props.active)}`}}
               key={index}
               onClick={() => this.handleClick(index)}>
               {humanize(title)}

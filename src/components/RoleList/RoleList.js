@@ -14,7 +14,7 @@ class RoleList extends React.Component {
   constructor () {
     super()
     this.state = {rowHeight: 100, headerHeight: 150, tableHeight: window.innerHeight - 150,
-                  windowHeight: window.innerHeight, value: '', roles: []}
+      windowHeight: window.innerHeight, value: '', roles: []}
     this.handleResize = this.handleResize.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSelectClick = this.handleSelectClick.bind(this)
@@ -65,7 +65,7 @@ class RoleList extends React.Component {
 
   handleResize (event) {
     this.setState({windowHeight: window.innerHeight,
-                   tableHeight: window.innerHeight - this.state.headerHeight})
+      tableHeight: window.innerHeight - this.state.headerHeight})
   }
 
   handleActiveStyle (index) {

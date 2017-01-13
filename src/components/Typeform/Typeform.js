@@ -9,11 +9,11 @@ class Typeform extends React.Component {
   constructor () {
     super()
     this.state = {windowWidth: window.innerWidth,
-                  rectWidth: this.calcRectWidth(),
-                  rectPadding: this.calcRectPadding(),
-                  rectMargin: this.calcRectMargin(),
-                  activeIndices: [],
-                  allName: []}
+      rectWidth: this.calcRectWidth(),
+      rectPadding: this.calcRectPadding(),
+      rectMargin: this.calcRectMargin(),
+      activeIndices: [],
+      allName: []}
     this.handleResize = this.handleResize.bind(this)
     this.handleBackClick = this.handleBackClick.bind(this)
     this.handleRefreshClick = this.handleRefreshClick.bind(this)
@@ -68,9 +68,10 @@ class Typeform extends React.Component {
 
   handleResize (event) {
     this.setState({windowWidth: window.innerWidth,
-                   rectWidth: this.calcRectWidth(),
-                   rectPadding: this.calcRectPadding(),
-                   rectMargin: this.calcRectMargin()})
+      rectWidth: this.calcRectWidth(),
+      rectPadding: this.calcRectPadding(),
+      rectMargin: this.calcRectMargin()
+    })
   }
 
   calcRectWidth () {
@@ -167,10 +168,10 @@ class Typeform extends React.Component {
       <button onClick={() => this.handleClick(index)} className={classes.coloredRect}
         key={index}
         style={{'width': `${this.state.rectWidth}px`,
-                      'height': `${this.state.rectWidth * 1.2}px`,
-                      'marginBottom': `${this.state.rectMargin}px`,
-                      'backgroundColor': `${this.colorForIndex(activeIndex)}`,
-                      'float': `${floatDirection}`}}>
+          'height': `${this.state.rectWidth * 1.2}px`,
+          'marginBottom': `${this.state.rectMargin}px`,
+          'backgroundColor': `${this.colorForIndex(activeIndex)}`,
+          'float': `${floatDirection}`}}>
         {this.renderRect(activeIndex)}
       </button>
     )
@@ -199,20 +200,20 @@ class Typeform extends React.Component {
         {this.props.typeformActiveIndex !== -1 ? (
           null
           ) : (
-          <div className={classes.typeformListContainer}>
-            <NavBar title={this.props.menuTitle}
-              leftItem={this.handleBackStatus()}
-              leftClick={() => this.handleBackClick()} />
-            <div className={classes.menuContainer}
-              style={{'paddingLeft': `${this.state.rectPadding}px`,
-                        'paddingRight': `${this.state.rectPadding}px`}}>
+            <div className={classes.typeformListContainer}>
+              <NavBar title={this.props.menuTitle}
+                leftItem={this.handleBackStatus()}
+                leftClick={() => this.handleBackClick()} />
+              <div className={classes.menuContainer}
+                style={{'paddingLeft': `${this.state.rectPadding}px`,
+                  'paddingRight': `${this.state.rectPadding}px`}}>
                 {this.state.activeIndices.map((name, index) => {
                   if (index % 2 === 0) {
                     return this.renderRow(index)
                   }
                 })}
+              </div>
             </div>
-          </div>
           )
         }
       </div>
