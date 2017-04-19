@@ -22,7 +22,11 @@ This admin frontend serves to handle user interfaction with the registration bac
 │   ├── layouts              # Components that dictate major page structure
 │   ├── redux                # Reducers/constants/actions not part of a route
 │   ├── routes               # Main route definitions and async split points
-│   │   ├── index.js         # Bootstrap main application routes with store
+│   │   ├── index.js         # Bootstra
+
+
+
+p main application routes with store
 │   │   └── Home             # Fractal route
 │   │       ├── index.js     # Route definitions and async split points
 │   │       ├── assets       # Assets required to render components
